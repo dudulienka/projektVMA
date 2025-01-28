@@ -11,6 +11,7 @@
 <p><a href="index.php?menu=9"> <font color="#000080"> vyhladanie tovaru </font> </a></p>
 <p><a href="index.php?menu=11"> <font color="#000080"> synchronizácia </font> </a></p>
 
+
 <br>
 
 

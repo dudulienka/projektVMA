@@ -10,10 +10,10 @@ $nazov =$_POST["nazov"];
 $vyrobca =$_POST["vyrobca"];
 $cena=$_POST["cena"];
 
-include ("config.php");   
-$var = mysqli_connect("$localhost","$user","$password","$db") or die ("connect error");
-$sql = "select id,nazov,vyrobca,popis,kod,cena,farba,data_identifier from tovar where cena LIKE '$cena%' AND nazov LIKE '%$nazov%' AND vyrobca LIKE '$vyrobca%'";
-$result = mysqli_query($var, $sql) or exit ("chybny dotaz");
+include ("config3.php"); 
+$var3 = mysqli_connect("$localhost3","$user3","$password3","$db3") or die ("connect error");
+$sql3 = "select id,nazov,vyrobca,popis,kod,cena,farba,data_identifier from tovar where cena LIKE '$cena%' AND nazov LIKE '%$nazov%' AND vyrobca LIKE '$vyrobca%'";
+$result3 = mysqli_query($var3, $sql3) or exit ("chybny dotaz");
 //záhlavie tabulky
 echo "<tr>
     <td width='100'bgcolor='#FFaaCC' height='32'><b>Kod </b></td>
@@ -35,7 +35,7 @@ echo "<tr>
   </tr>"; 
 //nacítanie hodnôt do pola
 $i="0";
-while($row = mysqli_fetch_assoc($result))
+while($row = mysqli_fetch_assoc($result3))
 		{ 
 		$i=$i+1;
 			$id = $row['id'];

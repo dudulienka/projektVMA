@@ -9,12 +9,13 @@
 
 <?php
 echo "<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#111111' width='700'>";
-include ("config.php");   
-$var = mysqli_connect("$localhost","$user","$password","$db") or die ("connect error");
-$sql = "select id,nazov,vyrobca,popis,kod,cena,farba,data_identifier from tovar";
-$result = mysqli_query($var, $sql) or exit ("chybny dotaz");
+
+include ("config3.php");  
+$var3 = mysqli_connect("$localhost3","$user3","$password3","$db3") or die ("connect error");
+$sql3 = "select id,nazov,vyrobca,popis,kod,cena,farba,data_identifier from tovar";
+$result3 = mysqli_query($var3, $sql3) or exit ("chybny dotaz");
 //načítanie hodnôt do pola
-while($row = mysqli_fetch_assoc($result))
+while($row = mysqli_fetch_assoc($result3))
 		{ 
 			$id = $row['id'];
       $nazov = $row['nazov'];

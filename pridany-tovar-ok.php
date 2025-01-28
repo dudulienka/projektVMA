@@ -13,7 +13,7 @@ $kod = $_POST["kod"];
 function generateComputerIdentifier()
 {
     // Replace this logic with your own to get the computer identifier
-    return "A";
+    return "C";
 }
 
 // Generate computer identifier
@@ -25,9 +25,9 @@ $timestampIdentifier = date("ymdHis");
 // Combine computer and timestamp identifiers
 $dataIdentifier = $computerIdentifier . "-" . $timestampIdentifier;
 
-$var = mysqli_connect($localhost, $user, $password, $db) or die("connect error");
+$var3 = mysqli_connect($localhost3, $user3, $password3, $db3) or die("connect error");
 
-$local_conn = new mysqli($localhost, $user, $password, $db);
+$local_conn = new mysqli($localhost3, $user3, $password3, $db3);
 
 if ($local_conn->connect_error) {
     die("Connection failed to local DB: " . $local_conn->connect_error);
@@ -63,7 +63,7 @@ $remote_sql = "INSERT INTO `tovar` (`nazov`, `vyrobca`, `popis`, `farba`, `cena`
 
 try {
     // Pokus o pripojenie k vzdialenej databáze
-    $remote_conn = new mysqli($localhost2, $user2, $password2, $db2);
+    $remote_conn = new mysqli($localhost, $user, $password, $db);
 
     // Kontrola pripojenia k vzdialenej databáze
     if ($remote_conn->connect_error) {
@@ -107,7 +107,7 @@ $remote_sql3 = "INSERT INTO `tovar` (`nazov`, `vyrobca`, `popis`, `farba`, `cena
 
 try {
     // Pokus o pripojenie k vzdialenej databáze
-    $remote_conn3 = new mysqli($localhost3, $user3, $password3, $db3);
+    $remote_conn3 = new mysqli($localhost2, $user2, $password2, $db2);
 
     // Kontrola pripojenia k vzdialenej databáze
     if ($remote_conn3->connect_error) {
