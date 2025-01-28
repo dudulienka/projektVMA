@@ -1,15 +1,15 @@
 <?php
-include("config.php");
 include("config2.php");
 include("config3.php");
+include("config.php");
 
 $k =$_GET["k"]; 
 
 echo "Data Identifier: $k";
 
-$var = mysqli_connect($localhost, $user, $password, $db) or die("connect error");
+$var = mysqli_connect($localhost2, $user2, $password2, $db2) or die("connect error");
 
-$local_conn = new mysqli($localhost, $user, $password, $db);
+$local_conn = new mysqli($localhost2, $user2, $password2, $db2);
 
 if ($local_conn->connect_error) {
     die("Connection failed to local DB: " . $local_conn->connect_error);
@@ -33,40 +33,40 @@ if (!$local_stmt->execute()) {
 $local_stmt->close();
 $local_conn->close();
 
-//uzol 2
-$remote_sql2 = "Delete FROM tovar WHERE data_identifier = '$k'";
+
+$remote_sql = "Delete FROM tovar WHERE data_identifier = '$k'";
 
 try {
     // Pokus o pripojenie k vzdialenej databáze
-    $remote_conn2 = new mysqli($localhost2, $user2, $password2, $db2);
+    $remote_conn = new mysqli($localhost, $user, $password, $db);
 
     // Kontrola pripojenia k vzdialenej databáze
-    if ($remote_conn2->connect_error) {
-        throw new Exception("Connection failed to remote DB: " . $remote_conn2->connect_error);
+    if ($remote_conn->connect_error) {
+        throw new Exception("Connection failed to remote DB: " . $remote_conn->connect_error);
     }
 
     // Pripravenie SQL príkazu pre vzdialenú databázu
-    $remote_stmt2 = $remote_conn2->prepare($remote_sql2);
+    $remote_stmt = $remote_conn->prepare($remote_sql);
 
     // Kontrola, či je statement správne pripravený
-    if ($remote_stmt2 === false) {
-        throw new Exception("Remote prepare failed: " . $remote_conn2->error);
+    if ($remote_stmt === false) {
+        throw new Exception("Remote prepare failed: " . $remote_conn->error);
     }
 
     // Vykonanie príkazu vzdialenej databáze
-    if (!$remote_stmt2->execute()) {
-        throw new Exception("Remote execute failed: " . $remote_stmt2->error);
+    if (!$remote_stmt->execute()) {
+        throw new Exception("Remote execute failed: " . $remote_stmt->error);
     }
 
     // Zatvorenie príkazu a pripojenia k vzdialenej databáze
-    $remote_stmt2->close();
-    $remote_conn2->close();
+    $remote_stmt->close();
+    $remote_conn->close();
 
 
 } catch (Exception $e) {
   // Tu zapíšeme len SQL dotaz, ktorý sa nepodarilo vykonať
     $failed_sql = "Delete FROM tovar WHERE data_identifier = '$k'" . PHP_EOL;
-    file_put_contents('failed2.txt', $failed_sql, FILE_APPEND);
+    file_put_contents('failed1.txt', $failed_sql, FILE_APPEND);
     echo "An error occurred: " . $e->getMessage();
 }
 
@@ -101,7 +101,7 @@ try {
     $remote_stmt3->close();
     $remote_conn3->close();
 
-   
+
 } catch (Exception $e) {
   // Tu zapíšeme len SQL dotaz, ktorý sa nepodarilo vykonať
     $failed_sql = "Delete FROM tovar WHERE data_identifier = '$k'" . PHP_EOL;

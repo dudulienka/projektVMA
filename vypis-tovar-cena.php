@@ -1,4 +1,4 @@
-﻿<!doctype html public "-//W3C//DTD HTML 4.0 //EN">
+<!doctype html public "-//W3C//DTD HTML 4.0 //EN">
 <html>
 <head>
 </head>
@@ -10,10 +10,10 @@ $nazov =$_POST["nazov"];
 $vyrobca =$_POST["vyrobca"];
 $cena=$_POST["cena"];
 
-include ("config.php");   
-$var = mysqli_connect("$localhost","$user","$password","$db") or die ("connect error");
-$sql = "select id,nazov,vyrobca,popis,kod,cena,farba,data_identifier from tovar where cena LIKE '$cena%' AND nazov LIKE '%$nazov%' AND vyrobca LIKE '$vyrobca%'";
-$result = mysqli_query($var, $sql) or exit ("chybny dotaz");
+include ("config2.php"); 
+$var2 = mysqli_connect("$localhost2","$user2","$password2","$db2") or die ("connect error");
+$sql2 = "select id,nazov,vyrobca,popis,kod,cena,farba,data_identifier from tovar where cena LIKE '$cena%' AND nazov LIKE '%$nazov%' AND vyrobca LIKE '$vyrobca%'";
+$result2 = mysqli_query($var2, $sql2) or exit ("chybny dotaz");
 //záhlavie tabulky
 echo "<tr>
     <td width='100'bgcolor='#FFaaCC' height='32'><b>Kod </b></td>
@@ -35,7 +35,7 @@ echo "<tr>
   </tr>"; 
 //nacítanie hodnôt do pola
 $i="0";
-while($row = mysqli_fetch_assoc($result))
+while($row = mysqli_fetch_assoc($result2))
 		{ 
 		$i=$i+1;
 			$id = $row['id'];
@@ -46,6 +46,7 @@ while($row = mysqli_fetch_assoc($result))
       $cena = $row['cena'];
       $kod = $row['kod'];
       $data_identifier = $row['data_identifier'];
+
 //v�pis hodn�t
 echo "<tr>
     <td width='100'bgcolor='#FFaaCC' height='32'> ".$kod."</b></td>
